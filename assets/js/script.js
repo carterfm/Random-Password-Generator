@@ -20,27 +20,41 @@ function generatePassword() {
   //This array will be filled out with characters from the above constant arrays based on user input.
   var charsToChooseFrom = [];
   //Accepting user input to determine the length of the password to be generated.
-  var passwordLength = parseInt(window.prompt("How many characters long would you like your password to be?\nPlease input a number between 8 and 128 (inclusive).\nNote that any 0s before your first nonzero digit will be ignored."));
+  //Note that window.prompt returns null if the user presses cancel; this is a special case that I want to handle.
+  var passwordLength = window.prompt("How many characters long would you like your password to be?\nPlease input a number between 8 and 128 (inclusive).\nNote that any 0s before your first nonzero digit will be ignored, as will anything after a decimal point.");
+  if (passwordLength === null) {
+    //If the user presses Cancel, the script will print "Canceled" into the password field.
+    return "Canceled";
+  } else {
+    passwordLength = parseInt(passwordLength);
+  }
   //This while loop prevents the user from proceeding without entering a valid number of characters.
   while (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
-    var passwordLength = parseInt(window.prompt("Invalid entry. Please enter a number between 8 and 128 (inclusive)."))
+    var passwordLength = window.prompt("Invalid entry. Please enter a number between 8 and 128 (inclusive).")
+    //repeating our check from earlier to allow the user to cancel out at this stage, as well.
+    if (passwordLength === null) {
+      //If the user presses Cancel, the script will print "Canceled" into the password field.
+      return "Canceled";
+    } else {
+      passwordLength = parseInt(passwordLength);
+    }
   }
 
   //Now we're going to start builing our charsToChooseFrom array. 
   //I'm going to nest this process in a while loop so that the user must approve at least one type of
   //character in order to proceed--the check will be if charsToChooseFrom remains empty.
   while(charsToChooseFrom.length === 0) {
-    if(window.confirm("Can this password include lowercase letters?")) {
+    if(window.confirm("Can this password include lowercase letters? Click OK for yes or Cancel for no.")) {
       charsToChooseFrom = charsToChooseFrom.concat(LOWERCASE);
     } 
-    if(window.confirm("Can this password include uppercase letters?")) {
+    if(window.confirm("Can this password include uppercase letters? Click OK for yes or Cancel for no.")) {
       charsToChooseFrom = charsToChooseFrom.concat(UPPERCASE);
     }
-    if(window.confirm("Can this password include digits?")) {
+    if(window.confirm("Can this password include digits? Click OK for yes or Cancel for no.")) {
       charsToChooseFrom = charsToChooseFrom.concat(DIGITS);
     }
 
-    if(window.confirm("Can this password include special characters?")) {
+    if(window.confirm("Can this password include special characters? Click OK for yes or Cancel for no.")) {
       charsToChooseFrom = charsToChooseFrom.concat(SPECIAL);
     }
 
