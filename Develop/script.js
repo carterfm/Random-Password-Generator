@@ -15,6 +15,8 @@ const SPECIAL = ["!", "\"", "#", "$", "%", "&", "\'", "(", ")", "*", "+", ",", "
 var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
+  //This empty string is where we'll add in all the characters for our password.
+  var generatedPassword = "";
   //This array will be filled out with characters from the above constant arrays based on user input.
   var charsToChooseFrom = [];
   //Accepting user input to determine the length of the password to be generated.
@@ -47,7 +49,13 @@ function generatePassword() {
     }
   }
 
+  //Now we actually generate the password. We add the appropriate number of characters (passwordLength) 
+  //randomly chosen from charsToChooseFrom to generatedPassword, and then return that.
+  for(var i = 0; i < passwordLength; i++) {
+    generatedPassword += charsToChooseFrom[Math.floor(Math.random() * charsToChooseFrom.length)];
+  }
 
+  return generatedPassword;
 }
 
 // Write password to the #password input
