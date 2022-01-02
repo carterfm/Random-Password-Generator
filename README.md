@@ -1,5 +1,5 @@
 # <Random-Password-Generator>
-A random password generator that prompts the user for a password length between 8 and 128 characters and the types of characters it is allowed to use (between uppercase, lowercase, numeric, and special characters). The app detects and rejects invalid password length inputs from the user; similarly, it only advances to generating a password once the user has approved the use of at least one type of character to use. 
+A random password generator that prompts the user for a password length between 8 and 128 characters and the types of characters it is allowed to use (between uppercase, lowercase, numeric, and special characters). The app detects and rejects invalid password length inputs from the user; similarly, it only advances to generating a password once the user has approved the use of at least one type of character. 
 
 Screenshots of finished app: 
 
